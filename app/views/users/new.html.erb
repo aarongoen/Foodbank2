@@ -1,0 +1,9 @@
+<h1>Hello</h1>
+
+<h3>Please sign-up or log in.</h3>
+
+<%= form_for(@user) do |f| %>
+<%= f.text_field :name %><br>
+<%= f.password_field :password %>
+<%= f.submit %>
+<% end %>

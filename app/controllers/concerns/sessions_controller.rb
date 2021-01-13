@@ -6,13 +6,7 @@ class SessionsController < ApplicationController
 
         end
     end
-
-    def show
-  
-            @user = User.find(params[:id]) 
-        end
-    end
-
+    
     def create
         session[:name] = params[:name]
         redirect_to '/'

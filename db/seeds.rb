@@ -10,4 +10,4 @@ Food.create(name: 'blueberries')
 Food.create(name: 'strawberries')
 Food.create(name: 'cherries')
 
-Request.create()
+User.create(name: "Edison", password: password1234)
