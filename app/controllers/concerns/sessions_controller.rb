@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
     def signup
-        
+        @user = User.new
     end
     
     def login
@@ -17,11 +17,17 @@ class SessionsController < ApplicationController
     end
         
     def create
-        session[:name] = params[:name]
-        redirect_to '/'
+        @user = User.create(strong_params)
+        # redirect_to '/'
     end
 
     def logout
         session.clear
+    end
+
+    private
+
+    def strong_params
+        params.require(:user).permit(name:, :password)
     end
 end
