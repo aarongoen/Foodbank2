@@ -7,4 +7,5 @@ class UsersController < ApplicationController
         @user = User.create(name: params[:name], password: params[:password])
         redirect_to 
     end
+
 end
