@@ -25,6 +25,19 @@ class FoodsController < ApplicationController
         end
     end
 
+    def update
+        if @food.update(food_params)
+            redirect_to @food
+        else
+            render :edit
+        end
+    end
+
+    def destroy
+        @food.destroy
+        redirect_to products_path
+    end
+
     private
     
     def food_params

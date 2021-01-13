@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_13_021725) do
+ActiveRecord::Schema.define(version: 2021_01_13_150437) do
 
   create_table "foods", force: :cascade do |t|
     t.string "name"
@@ -20,8 +20,15 @@ ActiveRecord::Schema.define(version: 2021_01_13_021725) do
     t.float "price"
   end
 
-  create_table "requests", force: :cascade do |t|
+  create_table "request_items", force: :cascade do |t|
     t.integer "quantity"
+    t.integer "food_id"
+    t.integer "request_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "requests", force: :cascade do |t|
     t.boolean "fulfilled"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
