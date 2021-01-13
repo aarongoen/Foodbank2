@@ -1,18 +1,27 @@
 class SessionsController < ApplicationController
-    def new
-        @user = User.new(params[:name])
-        if @person.save
-        else
-
-        end
+    def signup
+        
     end
     
+    def login
+        @user = User.new
+    end
+        
+    def new
+        @user = User.find_by(name: params[:user][:name])
+ 
+    end
+    
+    def welcome
+        
+    end
+        
     def create
         session[:name] = params[:name]
         redirect_to '/'
     end
 
-    def destroy
-        session.delete :name
+    def logout
+        session.clear
     end
 end
