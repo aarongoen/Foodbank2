@@ -4,12 +4,18 @@ class RequestsController < ApplicationController
         @request = Request.all 
     end
 
+    # def index
+    #     @requests = current_request.items
+    # end
+
     def new
         @request = Request.new
     end
 
     def create
-        @request = Request.create(quantity: params[:quantity], fulfilled: params[:fulfilled], measurement: params[:measurement])
+        @request_item = @request.request_items.new(request_params)
+        @request.save
+        session[:request_id] = @request.id
         redirect_to coupon_path(@request)
     end
 
@@ -18,15 +24,28 @@ class RequestsController < ApplicationController
     end
 
     def update
-
+        @request_item = @request.request_items.find(params[:id])
+        @request_item.update_attributes(order_params)
+        @request_items = current_request.request_items
     end
 
     def edit
 
     end
 
-    def delete
-        @request = Request.find(params[:id])
-        @request.destroy
+    def destroy
+        @request_item = @request.request_items.find(params[:id])
+        @request_item.destroy
+        @request_items = current_request.request_items
+    end
+
+    private
+
+    def request_params
+        params.require(:request).permit(:quantity, :measurement, :fullfilled)
+    end
+
+    def set_request
+        @request = current_request
     end
 end

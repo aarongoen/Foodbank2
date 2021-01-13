@@ -1,0 +1,9 @@
+<h1>Welcome to Foodbank2!</h1> <!-- This is the landing page -->
+
+<h3>Please sign up or log in to access your account.</h3> <>
+
+<%= form_for(@user) do |f| %>
+<%= f.text_field :name %><br>
+<%= f.password_field :password %><br>
+<%= f.submit %>
+<% end %>
